@@ -15,12 +15,16 @@ class MyTheme {
     scaffoldBackgroundColor: Colors.transparent,
     textTheme: TextTheme(
       titleLarge: TextStyle(fontWeight: FontWeight.w700, fontSize: 30),
+      titleMedium: TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
+      titleSmall: TextStyle(fontWeight: FontWeight.w400, fontSize: 25),
+      bodyLarge: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.white,
-        selectedLabelStyle: TextStyle(
-          fontWeight: FontWeight.w700,
-        )),
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.white,
+      selectedLabelStyle: TextStyle(
+        fontWeight: FontWeight.w700,
+      ),
+    ),
   );
 }
