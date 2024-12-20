@@ -5,8 +5,38 @@ class RadioScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.purple,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset('assets/images/radio_image.png'),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              size: 50,
+              Icons.skip_previous,
+              color: Theme.of(context).primaryColorLight,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Icon(
+                size: 70,
+                Icons.play_arrow_rounded,
+                color: Theme.of(context).primaryColorLight),
+            SizedBox(
+              width: 20,
+            ),
+            Icon(
+                size: 50,
+                Icons.skip_next,
+                color: Theme.of(context).primaryColorLight)
+          ],
+        )
+      ],
     );
   }
 }
