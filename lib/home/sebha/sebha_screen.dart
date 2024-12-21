@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../../MyTheme.dart';
+import '../../providers/app_config_provider.dart';
 
 class SebhaScreen extends StatefulWidget {
   const SebhaScreen({super.key});
@@ -46,6 +50,8 @@ class _SebhaScreenState extends State<SebhaScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Center(
       child: Column(
         children: [
@@ -62,15 +68,19 @@ class _SebhaScreenState extends State<SebhaScreen> {
                           top: MediaQuery.of(context).size.height * 0.07),
                       child: Transform.rotate(
                           angle: rotationAngle,
-                          child:
-                              Image.asset('assets/images/body_sebha_logo.png')),
+                          child: provider.isDarkMode()
+                            ? Image.asset('assets/images/body_sebha_dark.png')
+                            : Image.asset('assets/images/body_sebha_logo.png'),
+                      ),
                     ),
                   ),
                   Center(
                     child: Padding(
                       padding: EdgeInsets.only(
                           left: MediaQuery.of(context).size.width * 0.1),
-                      child: Image.asset('assets/images/head_sebha_logo.png'),
+                      child: provider.isDarkMode()
+                          ? Image.asset('assets/images/head_sebha_dark.png')
+                          : Image.asset('assets/images/head_sebha_logo.png'),
                     ),
                   ),
                 ],
@@ -87,7 +97,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
           Container(
             padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.02),
             decoration: BoxDecoration(
-                color: Theme.of(context).primaryColorLight,
+                color: Theme.of(context).primaryColor,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(10)),
             child: Text('$sebhaCounter',
@@ -101,12 +111,19 @@ class _SebhaScreenState extends State<SebhaScreen> {
                 vertical: MediaQuery.of(context).size.height * 0.01,
                 horizontal: MediaQuery.of(context).size.width * 0.05),
             decoration: BoxDecoration(
-                color: Theme.of(context).primaryColorLight,
+                color: provider.isDarkMode()
+                    ? MyTheme.yellowColor
+                    : Theme.of(context).primaryColor,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(25)),
             child: Text(tasbehText,
-                style: Theme.of(context)
-                    .textTheme
+                style: provider.isDarkMode()
+                    ? Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(color: Theme.of(context).primaryColor)
+                    : Theme.of(context)
+                        .textTheme
                     .titleSmall!
                     .copyWith(color: Colors.white)),
           )
